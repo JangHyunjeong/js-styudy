@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./main.css" />
+  </head>
+  <body>
+    <div class="alert-box">
+      <p>알럿창임</p>
+      <button class="close-popup">닫기</button>
+    </div>
+
+    <button class="btn" onclick="openPopup()">버튼</button>
+
+    <button onclick="openPopup('아이디')">아이디 입력하세요</button>
+    <button onclick="openPopup('비밀번호')">비밀번호 입력하세요</button>
+
+    <button onclick="plus(2,3)">2+3</button>
+
+    <script>
+      function closePopup() {
+        document.querySelector(".alert-box").style.display = "none";
+      }
+
+      function openPopup(msg) {
+        if (msg !== undefined) {
+          document.querySelector(
+            ".alert-box > p"
+          ).innerText = `${msg}를 입력해주세요`;
+        }
+        document.querySelector(".alert-box").style.display = "block";
+      }
+
+      function plus(a, b) {
+        console.log(this);
+        this.innerText = `${a} + ${b} = ${a + b}`;
+      }
+
+      document
+        .querySelector(".close-popup")
+        .addEventListener("click", closePopup);
+
+      // 파라미터 자리에 들어가는 함수 - 콜백함수
+      // addEventListener 안에 파라미터로 들어가는 함수도 콜백함수임
+      // 코드를 순차적으로 실행할 때 가끔 보임
+    </script>
+  </body>
+</html>
