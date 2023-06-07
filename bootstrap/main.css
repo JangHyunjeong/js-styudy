@@ -1,0 +1,6 @@
+.list-group {
+  display: none;
+}
+.list-group.show {
+  display: block;
+}
