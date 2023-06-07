@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>if문 문제 풀기</h1>
+
+    <script>
+      function 삼육구게임(number) {
+        if (number % 10 === 3) {
+          console.log("박수");
+        } else {
+          console.log("통과");
+        }
+      }
+      // 삼육구게임(6);
+      // 삼육구게임(12);
+      // 삼육구게임(11);
+
+      function 삼육구게임2(number) {
+        if (number % 9 == 0) {
+          console.log("박수x2");
+        } else if (number % 3 == 0) {
+          console.log("박수");
+        } else {
+          console.log("통과");
+        }
+      }
+      // 삼육구게임2(6);
+      // 삼육구게임2(9);
+      // 삼육구게임2(11);
+
+      function 삼육구게임3(number) {
+        if (number % 10 == 3 || number % 10 == 6 || number % 10 == 9) {
+          console.log("박수x2");
+        } else {
+          console.log("통과");
+        }
+      }
+      // 삼육구게임3(6);
+      // 삼육구게임3(9);
+      // 삼육구게임3(13);
+
+      function 합격했냐(a, b) {
+        if (a < 0 || a > 100 || b < 0 || b > 100) {
+          console.log("0~100까지의 숫자를 써주쇼");
+        } else if (a + b >= 120 && a > 40 && b > 40) {
+          console.log("합격");
+        } else {
+          console.log("불합격");
+        }
+      }
+      합격했냐(70, 70);
+      합격했냐(30, 100);
+      합격했냐(50, 50);
+      합격했냐(-1, 50);
+      합격했냐(11, 101);
+    </script>
+  </body>
+</html>
