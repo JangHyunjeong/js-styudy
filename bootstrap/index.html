@@ -13,6 +13,25 @@
     <link rel="stylesheet" href="./main.css" />
   </head>
   <body>
+    <div class="black-bg" id="modalLogin">
+      <div class="white-bg">
+        <h4>로그인하세요</h4>
+
+        <form action="success.html" id="form">
+          <div class="my-3">
+            <input type="text" class="form-control" id="inputId" />
+          </div>
+          <div class="my-3">
+            <input type="password" class="form-control" id="inputPw" />
+          </div>
+          <button type="submit" class="btn btn-primary" id="submit">
+            전송
+          </button>
+          <button type="button" class="btn btn-danger" id="close">닫기</button>
+        </form>
+      </div>
+    </div>
+
     <nav class="navbar navbar-light bg-light">
       <div class="container-fluid">
         <span class="navbar-brand">Navbar</span>
@@ -30,12 +49,43 @@
       <li class="list-group-item">And a fifth one</li>
     </ul>
 
+    <div class="main-bg">
+      <h4>Shirts on Sale</h4>
+      <button id="login" class="btn btn-danger">로그인</button>
+    </div>
+
     <script>
+      const form = document.querySelector("#form");
+      form.addEventListener("submit", function (e) {
+        const inputId = document.querySelector("#inputId");
+        const inputPw = document.querySelector("#inputPw");
+        if (inputId.value == "") {
+          e.preventDefault();
+          alert("id를 입력하셈");
+        } else if (inputPw.value == "") {
+          e.preventDefault();
+          alert("비밀번호를 입력하셈");
+        } else if (inputPw.value.length < 6) {
+          e.preventDefault();
+          alert("비밀번호는 6자 이상으로 설정해주세요");
+        } else {
+          console.log("4");
+        }
+      });
+
       document
         .querySelector(".navbar-toggler")
         .addEventListener("click", function () {
           document.querySelector(".list-group").classList.toggle("show");
         });
+
+      document.querySelector("#login").addEventListener("click", function () {
+        document.querySelector("#modalLogin").classList.add("show");
+      });
+
+      document.querySelector("#close").addEventListener("click", function () {
+        document.querySelector("#modalLogin").classList.remove("show");
+      });
     </script>
 
     <script
