@@ -35,6 +35,9 @@
     <nav class="navbar navbar-light bg-light">
       <div class="container-fluid">
         <span class="navbar-brand">Navbar</span>
+        <button type="button" class="badge bg-dark" id="buttonDark">
+          Dark 🔄
+        </button>
         <button class="navbar-toggler" type="button">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -55,6 +58,48 @@
     </div>
 
     <script>
+      function darkMode() {
+        document
+          .querySelector(".navbar")
+          .classList.remove("navbar-light", "bg-light");
+        document
+          .querySelector(".navbar")
+          .classList.add("navbar-dark", "bg-dark");
+
+        document.querySelector("#buttonDark").innerText = "Light 🔄";
+        document.querySelector("#buttonDark").classList.remove("bg-dark");
+        document
+          .querySelector("#buttonDark")
+          .classList.add("bg-light", "text-secondary");
+      }
+
+      function lightMode() {
+        document
+          .querySelector(".navbar")
+          .classList.remove("navbar-dark", "bg-dark");
+        document
+          .querySelector(".navbar")
+          .classList.add("navbar-light", "bg-light");
+        document.querySelector("#buttonDark").innerText = "Dark 🔄";
+        document
+          .querySelector("#buttonDark")
+          .classList.remove("bg-light", "text-secondary");
+        document.querySelector("#buttonDark").classList.add("bg-dark");
+      }
+
+      let buttonClickCnt = 0;
+      // 다크모드
+      document
+        .querySelector("#buttonDark")
+        .addEventListener("click", function () {
+          if (buttonClickCnt % 2 == 0) {
+            darkMode();
+          } else {
+            lightMode();
+          }
+          buttonClickCnt++;
+        });
+
       const form = document.querySelector("#form");
       form.addEventListener("submit", function (e) {
         const inputId = document.querySelector("#inputId");
@@ -69,7 +114,6 @@
           e.preventDefault();
           alert("비밀번호는 6자 이상으로 설정해주세요");
         } else {
-          console.log("4");
         }
       });
 
