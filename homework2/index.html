@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>변수, 사칙연산 실력향상 과제</h1>
+
+    <form action="" id="q5">
+      <p>태조 이성계가 태어난 년도는?</p>
+      <input type="text" id="answer" />
+      <button type="submit" id="send-answer">제출</button>
+    </form>
+
+    <script>
+      // 1. 변수 할당하기
+      const age = 28;
+      const country = "Seoul";
+
+      // 2. 변수 scope
+      var name = "park";
+      var id = 0;
+
+      function showName() {
+        var name = "kim";
+        var id = 1;
+        console.log(name);
+      }
+
+      showName(); // Kim
+      console.log(id); // 0   - var은 functio 단위
+
+      //3. 이자율 계산하기
+      const 예금액 = 60000;
+      const 기간 = 2;
+      let 미래예금액;
+
+      if (예금액 >= 50000) {
+        미래예금액 = 예금액 * 1.2 ** 기간;
+      } else {
+        미래예금액 = 예금액 * 1.15 ** 기간;
+      }
+
+      console.log(미래예금액);
+
+      //4. 커피 리필을 이상하게 해주는 곳이 있습니다. 최대한 마실 수 있는 커피양을 계산해봅시다.
+      const first = 360;
+
+      let refill1 = (first / 3) * 2;
+      let refill2 = (refill1 / 3) * 2;
+      let total = first + refill1 + refill2;
+
+      console.log(total);
+
+      // Q5. 간단한 퀴즈 UI를 만들어봅시다.
+      document.querySelector("#q5").addEventListener("submit", function (e) {
+        const answer = document.querySelector("#answer").value;
+
+        if (answer == "") {
+          e.preventDefault();
+          alert("답을 입력해주세요");
+        } else if (answer == 1335) {
+          e.preventDefault();
+          alert("정답!");
+        } else {
+          e.preventDefault();
+          alert("멍청아");
+        }
+      });
+    </script>
+  </body>
+</html>
