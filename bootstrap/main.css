@@ -1,4 +1,33 @@
 /* nav */
+.navbar {
+  position: sticky;
+  top: 0;
+  left: 0;
+}
+.navbar-brand {
+  font-weight: 600;
+  transition: all 0.3s;
+}
+.navbar.scrolled .navbar-brand {
+  font-size: 15px;
+}
+.process {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: lightgray;
+}
+.process-bar {
+  position: absolute;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background-color: red;
+}
 .list-group {
   display: none;
 }
@@ -37,4 +66,16 @@
 .main-bg {
   background-color: lightgray;
   padding: 110px 50px;
+  min-height: 300vh;
+}
+
+/* alert */
+.alert {
+}
+
+/* 약관 */
+.yak {
+  background-color: white;
+  height: 200px;
+  overflow-y: auto;
 }

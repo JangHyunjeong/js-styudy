@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Bootstrap demo</title>
+    <title>나름 shop임</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -34,13 +34,16 @@
 
     <nav class="navbar navbar-light bg-light">
       <div class="container-fluid">
-        <span class="navbar-brand">Navbar</span>
+        <span class="navbar-brand">Apple Shop</span>
         <button type="button" class="badge bg-dark" id="buttonDark">
           Dark 🔄
         </button>
         <button class="navbar-toggler" type="button">
           <span class="navbar-toggler-icon"></span>
         </button>
+      </div>
+      <div class="process">
+        <span class="process-bar"></span>
       </div>
     </nav>
 
@@ -55,13 +58,78 @@
     <div class="main-bg">
       <h4>Shirts on Sale</h4>
       <button id="login" class="btn btn-danger">로그인</button>
-    </div>
 
-    <div class="alert alert-danger">
-      <span>5</span>초 이내 구매시 사은품 증정!
+      <div class="alert alert-danger">
+        <span>5</span>초 이내 구매시 사은품 증정!
+      </div>
+
+      <div class="yak">
+        <p>
+          이용약관<br />
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est, fugiat.
+          Praesentium dolorem ipsa neque cumque facilis nobis soluta facere quo
+          placeat ea, quidem dignissimos suscipit laudantium excepturi numquam
+          consequatur nihil. Quasi repudiandae natus eos architecto. Quibusdam
+          aut tempora enim ratione porro dolorum perspiciatis iure minus quidem
+          odio, laboriosam possimus itaque adipisci odit quisquam nobis dolores
+          cumque modi officia impedit ipsum! Ipsum tempora totam, repudiandae
+          iste nobis voluptatum tempore vel temporibus harum excepturi
+          laboriosam! Error sapiente nostrum delectus molestiae voluptatem
+          officiis corporis perspiciatis vero est suscipit, cum amet dolorem quo
+          aliquid. Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+          Est, fugiat. Praesentium dolorem ipsa neque cumque facilis nobis
+          soluta facere quo placeat ea, quidem dignissimos suscipit laudantium
+          excepturi numquam consequatur nihil. Quasi repudiandae natus eos
+          architecto. Quibusdam aut tempora enim ratione porro dolorum
+          perspiciatis iure minus quidem odio, laboriosam possimus itaque
+          adipisci odit quisquam nobis dolores cumque modi officia impedit
+          ipsum! Ipsum tempora totam, repudiandae iste nobis voluptatum tempore
+          vel temporibus harum excepturi laboriosam! Error sapiente nostrum
+          delectus molestiae voluptatem officiis corporis perspiciatis vero est
+          suscipit, cum amet dolorem quo aliquid. Lorem ipsum dolor sit, amet
+          consectetur adipisicing elit. Est, fugiat. Praesentium dolorem ipsa
+          neque cumque facilis nobis soluta facere quo placeat ea, quidem
+          dignissimos suscipit laudantium excepturi numquam consequatur nihil.
+          Quasi repudiandae natus eos architecto. Quibusdam aut tempora enim
+          ratione porro dolorum perspiciatis iure minus quidem odio, laboriosam
+          possimus itaque adipisci odit quisquam nobis dolores cumque modi
+          officia impedit ipsum! Ipsum tempora totam, repudiandae iste nobis
+          voluptatum tempore vel temporibus harum excepturi laboriosam! Error
+          sapiente nostrum delectus molestiae voluptatem officiis corporis
+          perspiciatis vero est suscipit, cum amet dolorem quo aliquid.
+        </p>
+      </div>
     </div>
 
     <script>
+      // page processbar
+      const pageHeight = document.querySelector("html").scrollHeight;
+      const processBar = document.querySelector(".process-bar");
+      window.addEventListener("scroll", function () {
+        const processValue =
+          parseFloat(window.scrollY / (pageHeight - window.innerHeight)) * 100;
+        processBar.style.width = `${processValue}%`;
+      });
+
+      // 약관 다 읽으면, alert발사
+      const yakBox = document.querySelector(".yak");
+      const yakBoxHeight = yakBox.offsetHeight;
+      const yakBoxScrollHeight = yakBox.scrollHeight;
+      yakBox.addEventListener("scroll", function () {
+        if (yakBox.scrollTop + yakBoxHeight >= yakBoxScrollHeight) {
+          alert("약관 확인 완료!");
+        }
+      });
+
+      // nav로고 애니메이션
+      window.addEventListener("scroll", function () {
+        if (window.scrollY > 100) {
+          document.querySelector(".navbar").classList.add("scrolled");
+        } else {
+          document.querySelector(".navbar").classList.remove("scrolled");
+        }
+      });
+
       // setTimeout / setInterval / clearInterval
       // x초 후에 함수 실행
       // setTimeout(function(){실행할 코드}, ms후 실행함)
