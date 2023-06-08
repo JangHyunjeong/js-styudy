@@ -235,6 +235,13 @@
       document.querySelector("#close").addEventListener("click", function () {
         document.querySelector("#modalLogin").classList.remove("show");
       });
+      document
+        .querySelector(".black-bg")
+        .addEventListener("click", function (e) {
+          if (e.target == document.querySelector(".black-bg")) {
+            document.querySelector("#modalLogin").classList.remove("show");
+          }
+        });
     </script>
 
     <script
