@@ -13,11 +13,18 @@
     <link rel="stylesheet" href="./main.css" />
   </head>
   <body>
+    <div class="container mt-3">
+      <div class="card p-3">
+        <span class="car-name"></span>
+        <span class="car-price"></span>
+      </div>
+    </div>
+
     <div class="container mt-5">
       <ul class="list">
-        <li class="tab-button">Products</li>
-        <li class="tab-button orange">Information</li>
-        <li class="tab-button">Shipping</li>
+        <li class="tab-button" data-id="0">Products</li>
+        <li class="tab-button orange" data-id="1">Information</li>
+        <li class="tab-button" data-id="2">Shipping</li>
       </ul>
       <div class="tab-content">
         <p>상품설명입니다. Product</p>
@@ -29,6 +36,12 @@
         <p>배송정보입니다. Shipping</p>
       </div>
     </div>
+
+    <script>
+      var car = { name: "소나타", price: [50000, 30000, 10000] };
+      document.querySelector(".car-name").innerText = car["name"];
+      document.querySelector(".car-price").innerText = car.price[1];
+    </script>
 
     <script src="./tab.js"></script>
 
