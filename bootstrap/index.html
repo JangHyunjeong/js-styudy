@@ -61,72 +61,7 @@
       <span>5</span>초 이내 구매시 사은품 증정!
     </div>
 
-    <div class="slide-container">
-      <div class="silde-wrapper">
-        <div class="slide slide-1">1</div>
-        <div class="slide slide-2">2</div>
-        <div class="slide slide-3">3</div>
-        <div class="slide slide-4">4</div>
-      </div>
-
-      <div class="slide-pager">
-        <button class="slide-prev">이전</button>
-        <button class="slide-next">다음</button>
-      </div>
-
-      <div class="slide-dots"></div>
-    </div>
-
     <script>
-      // slider 구현하기
-      const slideWrapper = document.querySelector(".silde-wrapper");
-      const slideLength = slideWrapper.children.length;
-      const slideDotWrapper = document.querySelector(".slide-dots");
-      let slideDots = "";
-      let currentPage = 0;
-
-      // slideDot 유동적으로 생성
-      for (i = 0; i < slideLength; i++) {
-        slideDots += `<button class="slide-button-${i + 1}"></button>`;
-      }
-      slideDotWrapper.innerHTML = slideDots;
-
-      // 각 dot 클릭시, 슬라이드 이동
-      slideDotWrapper.childNodes.forEach(function (item, index) {
-        item.addEventListener("click", function () {
-          currentPage = index;
-          slideWrapper.style.transform = `translate3d(-${
-            currentPage * 100
-          }vw, 0, 0)`;
-        });
-      });
-
-      // 다음 버튼
-      document
-        .querySelector(".slide-next")
-        .addEventListener("click", function () {
-          currentPage++;
-          if (currentPage == slideLength) {
-            currentPage = 0;
-          }
-          slideWrapper.style.transform = `translate3d(-${
-            currentPage * 100
-          }vw, 0, 0)`;
-        });
-
-      // 이전 버튼
-      document
-        .querySelector(".slide-prev")
-        .addEventListener("click", function () {
-          currentPage--;
-          if (currentPage < 0) {
-            currentPage = slideLength - 1;
-          }
-          slideWrapper.style.transform = `translate3d(-${
-            currentPage * 100
-          }vw, 0, 0)`;
-        });
-
       // setTimeout / setInterval / clearInterval
       // x초 후에 함수 실행
       // setTimeout(function(){실행할 코드}, ms후 실행함)
