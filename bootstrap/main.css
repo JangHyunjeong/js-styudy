@@ -38,3 +38,74 @@
   background-color: lightgray;
   padding: 110px 50px;
 }
+
+.slide-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.silde-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 300vw;
+  transition: all 0.5s;
+}
+.slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  flex-shrink: 0;
+  color: white;
+  font-size: 50px;
+  height: 500px;
+}
+.slide-1 {
+  background-color: red;
+}
+.slide-2 {
+  background-color: blue;
+}
+.slide-3 {
+  background-color: green;
+}
+.slide-4 {
+  background-color: orange;
+}
+
+.slide-pager {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 50%;
+  transform: translate3d(0, -50%, 0);
+  width: 100%;
+  pointer-events: none;
+}
+.slide-pager button {
+  padding: 10px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: all;
+  border: none;
+}
+
+.slide-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+.slide-dots button {
+  display: block;
+  width: 10px;
+  height: 10px;
+  background-color: darkgray;
+  border: 0;
+  padding: 0;
+  border-radius: 50%;
+  margin: 0 4px;
+}
