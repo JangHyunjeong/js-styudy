@@ -57,7 +57,28 @@
       <button id="login" class="btn btn-danger">로그인</button>
     </div>
 
+    <div class="alert alert-danger">
+      <span>5</span>초 이내 구매시 사은품 증정!
+    </div>
+
     <script>
+      // x초 후에 함수 실행
+      // setTimeout(function(){실행할 코드}, ms후 실행함)
+      setTimeout(function () {
+        document.querySelector(".alert").style.display = "none";
+      }, 5000);
+
+      let num = 5;
+      //  x초마다 코드 실행
+      var timmer = setInterval(function () {
+        num--;
+        if (num >= 0) {
+          document.querySelector(".alert span").innerText = num;
+        } else {
+          clearTimeout(timmer);
+        }
+      }, 1000);
+
       function darkMode() {
         document
           .querySelector(".navbar")
