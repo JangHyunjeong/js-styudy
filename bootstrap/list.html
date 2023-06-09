@@ -26,6 +26,13 @@
           <p>가격 : 70000</p>
         </div> -->
       </div>
+
+      <button class="btn btn-secondary btnPrice">갸격순정렬</button>
+      <button class="btn btn-secondary btnCba">상품명 역순으로 정렬</button>
+      <button class="btn btn-secondary btnFilter">
+        6만원 이하 상품만 보기
+      </button>
+      <br /><br />
       <button class="btn btn-danger btnMore">더보기</button>
     </div>
 
@@ -35,8 +42,10 @@
         { id: 1, price: 50000, title: "Springfield Shirt" },
         { id: 2, price: 60000, title: "Black Monastery" },
       ];
+
       const productContainer = document.querySelector(".productContainer");
 
+      // 상품 리스트에 상품 정보 뿌리기
       function addProductCard(arr) {
         for (let i = 0; i < arr.length; i++) {
           const productCard = `<div class="col-sm-4">
@@ -49,6 +58,46 @@
         }
       }
       addProductCard(products);
+
+      // 상품 가격순 정렬
+      document
+        .querySelector(".btnPrice")
+        .addEventListener("click", function () {
+          products.sort(function (a, b) {
+            return a.price - b.price;
+          });
+          productContainer.innerHTML = "";
+          addProductCard(products);
+        });
+
+      // 상품명 역순으로 정렬
+      document.querySelector(".btnCba").addEventListener("click", function () {
+        products.sort(function (a, b) {
+          if (a.title < b.title) {
+            return 1;
+          } else {
+            return -1;
+          }
+        });
+
+        productContainer.innerHTML = "";
+        addProductCard(products);
+      });
+
+      // 6만원 이하 상품만 보기
+      document
+        .querySelector(".btnFilter")
+        .addEventListener("click", function () {
+          // const newProduct = products.filter(function (item) {
+          //   return item.price <= 60000;
+          // });
+
+          // arrow function
+          const newProduct = products.filter((a) => a.price <= 60000);
+
+          productContainer.innerHTML = "";
+          newProduct(filterdeItem);
+        });
 
       /* 더보기 */
       const btnMore = document.querySelector(".btnMore");
@@ -73,6 +122,55 @@
           });
       }
       btnMore.addEventListener("click", getMoreItem);
+
+      /*
+      =================================================================================
+      filter / map / sort 사용법
+      =================================================================================
+      */
+
+      var 어레이 = [7, 3, 5, 2, 10];
+      var 어레이2 = ["b", "c", "a", "d"];
+
+      /* .map() - array 자료를 전부 변형하려면 */
+      var 새어레이 = 어레이.map(function (a) {
+        return a * 4;
+      });
+      console.log(새어레이);
+
+      /* .filter() - 조건에 상응하는 값만 추출 */
+      // 어레이.filter(function(a){
+      //   return 조건식(어떤 자료를 남길건지.. )
+      // })
+      var 새어레이 = 어레이.filter(function (a) {
+        return a < 4;
+      });
+      console.log(새어레이);
+
+      /* 정렬  - sort */
+      // sort - 원본변형
+      // filter - 원본변형 x
+      어레이.sort(function (a, b) {
+        // 숫자 오름차순 sort
+        return a - b;
+        // return 다음이 양수면 a를 오른쪽으로
+        // return 다음이 음수면 b를 오른쪽으로
+      });
+      // console.log(어레이);
+
+      // 어레이2.sort(); // 문자 정렬 sort
+      // console.log(어레이2);
+
+      // 문자 역순정렬
+      어레이2.sort(function (a, b) {
+        if (a < b) {
+          // a가 b보다 작니?
+          return 1; // yes a오른쪽
+        } else {
+          return -1; // no b오른쪽
+        }
+      });
+      console.log(어레이2);
     </script>
 
     <script
