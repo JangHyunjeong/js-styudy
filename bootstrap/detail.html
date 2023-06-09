@@ -20,6 +20,30 @@
       </div>
     </div>
 
+    <form class="container my-5 form-group">
+      <p>상품선택</p>
+      <select class="form-select mt-2">
+        <option value="모자">모자</option>
+        <option value="셔츠">셔츠</option>
+      </select>
+      <select class="form-select mt-2 form-hide">
+        <option>95</option>
+        <option>100</option>
+      </select>
+    </form>
+
+    <script>
+      const select = document.querySelectorAll(".form-select");
+
+      select[0].addEventListener("change", function (e) {
+        if (e.target.value == "셔츠") {
+          select[1].classList.remove("form-hide");
+        } else {
+          select[1].classList.add("form-hide");
+        }
+      });
+    </script>
+
     <div class="container mt-5">
       <ul class="list">
         <li class="tab-button" data-id="0">Products</li>
