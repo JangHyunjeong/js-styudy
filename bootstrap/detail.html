@@ -25,23 +25,54 @@
       <select class="form-select mt-2">
         <option value="모자">모자</option>
         <option value="셔츠">셔츠</option>
+        <option value="바지">바지</option>
       </select>
-      <select class="form-select mt-2 form-hide">
-        <option>95</option>
-        <option>100</option>
-      </select>
+      <select class="form-select mt-2 form-hide"></select>
     </form>
 
     <script>
+      // 반복문의 용도
+      // 1. 코드 반복
+      // 2. array, object 데이터 전부 꺼낼때
+
+      const pants = [28, 30, 32];
+      const shirts = [90, 95, 100];
+
       const select = document.querySelectorAll(".form-select");
 
       select[0].addEventListener("change", function (e) {
         if (e.target.value == "셔츠") {
           select[1].classList.remove("form-hide");
+          select[1].innerHTML = "";
+          shirts.forEach(function (item) {
+            select[1].insertAdjacentHTML(
+              "beforeend",
+              `<option>${item}</option`
+            );
+            console.log("this1 : ", this);
+          });
+        } else if (e.target.value == "바지") {
+          select[1].classList.remove("form-hide");
+          select[1].innerHTML = "";
+          pants.forEach((item) => {
+            select[1].insertAdjacentHTML(
+              "beforeend",
+              `<option>${item}</option>`
+            );
+            console.log("this2 : ", this);
+          });
         } else {
           select[1].classList.add("form-hide");
         }
       });
+
+      // 오브젝트 반복문으로 돌리기
+      var obj = { name: "kim", age: 20 };
+
+      for (var key in obj) {
+        // console.log(key);
+        console.log(obj[key]);
+      }
     </script>
 
     <div class="container mt-5">
