@@ -18,68 +18,33 @@
     <link rel="stylesheet" href="./main.css" />
   </head>
   <body>
-    <div class="card-group container">
-      <div class="card">
-        <img src="https://via.placeholder.com/600" />
-        <div class="card-body">
+    <div class="container">
+      <div class="row productContainer">
+        <!-- <div class="col-sm-4">
+          <img src="https://via.placeholder.com/600" class="w-100" />
           <h5>Card title</h5>
           <p>가격 : 70000</p>
-          <button class="btn btn-danger">주문하기</button>
-        </div>
-      </div>
-      <div class="card">
-        <img src="https://via.placeholder.com/600" />
-        <div class="card-body">
-          <h5>Card title</h5>
-          <p>가격 : 70000</p>
-          <button class="btn btn-danger">주문하기</button>
-        </div>
-      </div>
-      <div class="card">
-        <img src="https://via.placeholder.com/600" />
-        <div class="card-body">
-          <h5>Card title</h5>
-          <p>가격 : 70000</p>
-          <button class="btn btn-danger">주문하기</button>
-        </div>
+        </div> -->
       </div>
     </div>
 
     <script>
-      // ajax 사용법
-      // $.get("https://codingapple1.github.io/hello.txt")
-      //   .done(function (data) {
-      //     console.log(data);
-      //   })
-      //   .fail(function (err) {
-      //     console.log("실패함");
-      //   });
-
-      // $.get("https://codingapple1.github.io/price.json").done(function (data) {
-      //   console.log(data.price);
-      // });
-
-      // 바닐라 js 이용시 (get)
-      fetch("https://codingapple1.github.io/price.json")
-        .then((res) => res.json()) // 받아온 json을 object로 변환
-        .then((data) => {
-          console.log(data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-
       var products = [
         { id: 0, price: 70000, title: "Blossom Dress" },
         { id: 1, price: 50000, title: "Springfield Shirt" },
         { id: 2, price: 60000, title: "Black Monastery" },
       ];
+      const productContainer = document.querySelector(".productContainer");
 
-      const productCards = document.querySelectorAll(".card-group .card");
-      productCards.forEach(function (item, idx) {
-        item.querySelector("h5").innerHTML = products[idx].title;
-        item.querySelector("p").innerHTML = `가격 : ${products[idx].price}`;
-      });
+      for (let i = 0; i < products.length; i++) {
+        const productCard = `<div class="col-sm-4">
+            <img src="https://via.placeholder.com/600" class="w-100" />
+            <h5>${products[i].title}</h5>
+            <p>가격 : ${products[i].price}</p>
+          </div>`;
+
+        productContainer.insertAdjacentHTML("beforeend", productCard);
+      }
     </script>
 
     <script
