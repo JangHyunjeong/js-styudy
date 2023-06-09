@@ -26,6 +26,7 @@
           <p>가격 : 70000</p>
         </div> -->
       </div>
+      <button class="btn btn-danger btnMore">더보기</button>
     </div>
 
     <script>
@@ -36,15 +37,42 @@
       ];
       const productContainer = document.querySelector(".productContainer");
 
-      for (let i = 0; i < products.length; i++) {
-        const productCard = `<div class="col-sm-4">
-            <img src="https://via.placeholder.com/600" class="w-100" />
-            <h5>${products[i].title}</h5>
-            <p>가격 : ${products[i].price}</p>
-          </div>`;
+      function addProductCard(arr) {
+        for (let i = 0; i < arr.length; i++) {
+          const productCard = `<div class="col-sm-4">
+              <img src="https://via.placeholder.com/600" class="w-100" />
+              <h5>${arr[i].title}</h5>
+              <p>가격 : ${arr[i].price}</p>
+            </div>`;
 
-        productContainer.insertAdjacentHTML("beforeend", productCard);
+          productContainer.insertAdjacentHTML("beforeend", productCard);
+        }
       }
+      addProductCard(products);
+
+      /* 더보기 */
+      const btnMore = document.querySelector(".btnMore");
+      let moreCnt = 1;
+
+      // ajax방법으로 불러오기
+      // $.get("https://codingapple1.github.io/js/more1.json").done(function (
+      //   data
+      // ) {
+      //   console.log(data);
+      // });
+
+      function getMoreItem() {
+        fetch(`https://codingapple1.github.io/js/more${moreCnt}.json`)
+          .then((res) => res.json())
+          .then((data) => {
+            addProductCard(data);
+            moreCnt++;
+            if (moreCnt > 2) {
+              btnMore.style.display = "none";
+            }
+          });
+      }
+      btnMore.addEventListener("click", getMoreItem);
     </script>
 
     <script
