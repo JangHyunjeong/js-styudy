@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>array, for 반복문 실력향상 과제</title>
+  </head>
+  <body>
+    <h1>array, for 반복문 실력향상 과제</h1>
+
+    <script>
+      // Q. array에서 이름을 찾아주는 함수를 만들고 있습니다.
+      var 출석부 = ["흥민", "영희", "영희", "철수", "재석"];
+
+      // function 이름찾기(name) {
+      //   if (출석부.includes(name)) {
+      //     console.log("있어요");
+      //   } else {
+      //     console.log("없음 ㅜ");
+      //   }
+      // }
+      function 이름찾기(name) {
+        for (let i = 0; i < 출석부.length; i++) {
+          if (출석부[i] == name) {
+            console.log("맞음");
+            return;
+          }
+        }
+      }
+
+      // 이름찾기("영희");
+      // 이름찾기("흥민");
+      // 이름찾기("철수");
+      // 이름찾기("석열");
+
+      // Q. 갑자기 구구단을 콘솔창에 출력하고 싶습니다.
+      function 구구단() {
+        for (let i = 2; i <= 9; i++) {
+          for (let j = 1; j <= 9; j++) {
+            console.log(`${i}x${j}=${i * j}`);
+          }
+        }
+      }
+      //구구단();
+
+      // 평균점수 계산기 만들기
+      function calcGrowth(a, b) {
+        // 평균점수 계산
+        let avg = 0;
+        for (let i = 0; i < a.length; i++) {
+          avg += a[i];
+        }
+        avg = avg / a.length;
+
+        if (avg < b) {
+          console.log(`평균보다 ${b - avg}점 올랐네요`);
+        } else if (avg == b) {
+          console.log(`평균과 같네요 재수추천`);
+        } else {
+          console.log(`평균보다 ${avg - b}점 떨어졌네요 재수추천`);
+        }
+      }
+      calcGrowth([10, 20, 30, 40, 50], 40);
+      calcGrowth([40, 40, 40], 20);
+      calcGrowth([40, 40, 40], 40);
+    </script>
+  </body>
+</html>
