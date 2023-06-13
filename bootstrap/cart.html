@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cart</title>
+  </head>
+  <body>
+    <h1>카트페이지</h1>
+    <div class="cart-list"></div>
+    <script>
+      //const cartList = localStorage.removeItem("cart");
+
+      if (JSON.parse(localStorage.getItem("cart")) !== null) {
+        const cartList = JSON.parse(localStorage.getItem("cart"));
+        for (i = 0; i < cartList.length; i++) {
+          document.querySelector(".cart-list").innerHTML += `
+          <div>${cartList[i]}</div>
+        `;
+        }
+      } else {
+        document.querySelector(".cart-list").innerHTML += `
+          <div>장바구니가 비었습니다</div>
+        `;
+      }
+    </script>
+  </body>
+</html>
