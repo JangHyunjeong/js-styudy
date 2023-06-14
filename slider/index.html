@@ -15,10 +15,10 @@
   <body>
     <div class="slide-container">
       <div class="silde-wrapper">
-        <div class="slide slide-1">1</div>
-        <div class="slide slide-2">2</div>
-        <div class="slide slide-3">3</div>
-        <div class="slide slide-4">4</div>
+        <div class="slide slide-1" draggable="false">1</div>
+        <div class="slide slide-2" draggable="false">2</div>
+        <div class="slide slide-3" draggable="false">3</div>
+        <div class="slide slide-4" draggable="false">4</div>
       </div>
 
       <div class="slide-pager">
@@ -32,24 +32,59 @@
     <script>
       // slider 구현하기
       const slideWrapper = document.querySelector(".silde-wrapper");
-      const slideLength = slideWrapper.children.length;
+      const slide = document.querySelectorAll(".slide");
+      const slideLength = slide.length;
       const slideDotWrapper = document.querySelector(".slide-dots");
-      let slideDots = "";
+      let slideDotsHtml = "";
       let currentPage = 0;
+
+      // swipe 관련 변수
+      let startDot = 0;
+      let clicked = false;
+      let swipeDistance = 0;
+      const transitionTime = 500;
 
       // slideDot 유동적으로 생성
       for (i = 0; i < slideLength; i++) {
-        slideDots += `<button class="slide-button-${i + 1}"></button>`;
+        if (i == currentPage) {
+          slideDotsHtml += `<button class="slide-button slide-button-${
+            i + 1
+          } active"></button>`;
+        } else {
+          slideDotsHtml += `<button class="slide-button slide-button-${
+            i + 1
+          }"></button>`;
+        }
       }
-      slideDotWrapper.innerHTML = slideDots;
+      slideDotWrapper.innerHTML = slideDotsHtml;
+
+      const slideDots = slideDotWrapper.querySelectorAll(".slide-button");
+
+      // slideDot 활성화
+      function displayActiveSlideDot(idx) {
+        slideDots.forEach(function (item) {
+          item.classList.remove("active");
+        });
+        slideDots[idx].classList.add("active");
+      }
+
+      // smooth하게 슬라이드 넘기기
+      function slideSmooth() {
+        slideWrapper.style.transition = `all ${transitionTime}ms`;
+        setTimeout(function () {
+          slideWrapper.style.transition = `none`;
+        }, transitionTime);
+      }
 
       // 각 dot 클릭시, 슬라이드 이동
-      slideDotWrapper.childNodes.forEach(function (item, index) {
+      slideDots.forEach(function (item, index) {
         item.addEventListener("click", function () {
           currentPage = index;
           slideWrapper.style.transform = `translate3d(-${
             currentPage * 100
           }vw, 0, 0)`;
+          slideSmooth();
+          displayActiveSlideDot(index);
         });
       });
 
@@ -64,6 +99,8 @@
           slideWrapper.style.transform = `translate3d(-${
             currentPage * 100
           }vw, 0, 0)`;
+          slideSmooth();
+          displayActiveSlideDot(currentPage);
         });
 
       // 이전 버튼
@@ -77,7 +114,135 @@
           slideWrapper.style.transform = `translate3d(-${
             currentPage * 100
           }vw, 0, 0)`;
+          slideSmooth();
+          displayActiveSlideDot(currentPage);
         });
+
+      // swipe 기능 추가
+      // mousedown , mousemove, mouseup
+      // touchstart, touchmove, touchend
+      slide.forEach(function (item) {
+        // pc용
+        item.addEventListener("mousedown", function (e) {
+          startDot = e.clientX;
+          clicked = true;
+        });
+
+        item.addEventListener("mousemove", function (e) {
+          if (clicked == true) {
+            swipeDistance = e.clientX - startDot;
+            slideWrapper.style.transform = `translate3d(calc(${
+              currentPage * -100
+            }vw + ${swipeDistance}px),0,0)`;
+          }
+        });
+
+        item.addEventListener("mouseup", function (e) {
+          clicked = false;
+
+          //이전으로 가기
+          if (swipeDistance > 0) {
+            if (swipeDistance >= 100) {
+              if (currentPage == 0) {
+                currentPage = slideLength - 1;
+              } else {
+                currentPage--;
+              }
+              slideWrapper.style.transform = `translate3d(${
+                currentPage * -100
+              }vw,0,0)`;
+              displayActiveSlideDot(currentPage);
+            } else {
+              slideWrapper.style.transform = `translate3d(${
+                currentPage * -100
+              }vw,0,0)`;
+            }
+            slideSmooth();
+          }
+
+          // 다음으로
+          if (swipeDistance < 0) {
+            if (swipeDistance <= -100) {
+              if (currentPage == slideLength - 1) {
+                currentPage = 0;
+              } else {
+                currentPage++;
+              }
+              slideWrapper.style.transform = `translate3d(${
+                currentPage * -100
+              }vw,0,0)`;
+
+              displayActiveSlideDot(currentPage);
+            } else {
+              slideWrapper.style.transform = `translate3d(${
+                currentPage * -100
+              }vw,0,0)`;
+            }
+            slideSmooth();
+          }
+        });
+
+        // 모바일용
+        item.addEventListener("touchstart", function (e) {
+          startDot = e.touches[0].clientX; // pc와 상이 - 몇번째 손가락인지..
+          clicked = true;
+        });
+
+        item.addEventListener("touchmove", function (e) {
+          if (clicked == true) {
+            swipeDistance = e.touches[0].clientX - startDot; // pc와 상이
+            slideWrapper.style.transform = `translate3d(calc(${
+              currentPage * -100
+            }vw + ${swipeDistance}px),0,0)`;
+          }
+        });
+
+        item.addEventListener("touchend", function (e) {
+          clicked = false;
+          swipeDistance = e.changedTouches[0].clientX - startDot; // pc와 상이
+
+          //이전으로 가기
+          if (swipeDistance > 0) {
+            if (swipeDistance >= 100) {
+              if (currentPage == 0) {
+                currentPage = slideLength - 1;
+              } else {
+                currentPage--;
+              }
+              slideWrapper.style.transform = `translate3d(${
+                currentPage * -100
+              }vw,0,0)`;
+              displayActiveSlideDot(currentPage);
+            } else {
+              slideWrapper.style.transform = `translate3d(${
+                currentPage * -100
+              }vw,0,0)`;
+            }
+            slideSmooth();
+          }
+
+          // 다음으로
+          if (swipeDistance < 0) {
+            if (swipeDistance <= -100) {
+              if (currentPage == slideLength - 1) {
+                currentPage = 0;
+              } else {
+                currentPage++;
+              }
+              slideWrapper.style.transform = `translate3d(${
+                currentPage * -100
+              }vw,0,0)`;
+
+              displayActiveSlideDot(currentPage);
+            } else {
+              slideWrapper.style.transform = `translate3d(${
+                currentPage * -100
+              }vw,0,0)`;
+            }
+            slideSmooth();
+          }
+        });
+      });
     </script>
 
     <script
