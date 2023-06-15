@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./main.css" />
+    <script src="./js/main.js" defer></script>
+  </head>
+  <body>
+    <div class="global-sticky">
+      <header class="global-header">
+        <h1 class="logo">집꾸미기</h1>
+        <nav>
+          <ul>
+            <h2 class="visually-hidden">메인메뉴</h2>
+            <li>
+              <a href="/">HOME</a>
+            </li>
+            <li>
+              <a href="/">스토어</a>
+            </li>
+            <li>
+              <a href="/">시공견적</a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <aside class="search-aside">
+        <h2 class="visually-hidden">검색</h2>
+        <input
+          type="text"
+          aria-label="검색하기"
+          placeholder="검색어입력"
+          id="searchInput"
+          class="search-input"
+        />
+      </aside>
+    </div>
+
+    <div class="container">
+      <section class="product-container">
+        <h2 class="visually-hidden">상품리스트</h2>
+        <ul class="product-list jsProdustList">
+          <!-- <li class="product-ite">
+            <a href="/" class="image">
+              <img src="./images/pr1.JPG" alt="" />
+            </a>
+            <div class="product-infos">
+              <a href="/" class="title">식기세척기</a>
+              <span class="company">세척나라</span>
+              <strong class="price">가격 : 10000</strong>
+              <button type="button">담기</button>
+            </div>
+          </li> -->
+        </ul>
+      </section>
+
+      <section class="cart">
+        <h2>장바구니</h2>
+        <div class="drop-area">
+          <!-- ondrop="drop(event)"
+          ondragover="allowDrop(event)" -->
+          <span class="empty">여기로 드래그</span>
+        </div>
+
+        <div class="cart-total">
+          <h3>최종가격</h3>
+
+          <dl>
+            <dt>합계</dt>
+            <dd class="price">0 원</dd>
+          </dl>
+
+          <button type="button" class="btnBuy">구매하기</button>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
