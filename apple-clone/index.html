@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>appple</title>
+    <link rel="stylesheet" href="./main.css" />
+  </head>
+  <body>
+    <div class="card-background">
+      <h1>
+        It's Easy<br />
+        Try Try!
+      </h1>
+      <div class="card-box">
+        <img src="./image/card1.png" />
+      </div>
+      <div class="card-box">
+        <img src="./image/card2.png" />
+      </div>
+      <div class="card-box">
+        <img src="./image/card3.png" />
+      </div>
+      <div class="card-box last"><img src="./image/card3.png" /></div>
+    </div>
+
+    <script>
+      const cardBoxes = document.querySelectorAll(".card-box");
+
+      window.addEventListener("scroll", function () {
+        let 스크롤위치 = window.pageYOffset;
+        let stickyTop = 100;
+
+        let 첫번째 = cardBoxes[0].getBoundingClientRect().top;
+        let 두번째 = cardBoxes[1].getBoundingClientRect().top;
+        let 세번째 = cardBoxes[2].getBoundingClientRect().top;
+        let 네번째 = cardBoxes[3].getBoundingClientRect().top;
+
+        if (첫번째 <= stickyTop) {
+          transform = 1 - 첫번째 / 두번째;
+          cardBoxes[0].style.opacity = transform;
+        } else {
+          cardBoxes[0].style.opacity = 1;
+        }
+
+        if (두번째 <= stickyTop) {
+          transform = 1 - 두번째 / 세번째;
+          cardBoxes[1].style.opacity = transform;
+        } else {
+          cardBoxes[1].style.opacity = 1;
+        }
+
+        if (세번째 <= stickyTop) {
+          transform = 1 - 세번째 / 네번째;
+          cardBoxes[2].style.opacity = transform;
+        } else {
+          cardBoxes[2].style.opacity = 1;
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+.card-background {
+  margin-bottom: 1600px;
+  background-color: lightcyan;
+  /* position: relative;*/
+}
+.card-background h1 {
+  padding-top: 50px;
+  text-align: center;
+  font-size: 50px;
+}
+.card-box {
+  background-color: lightblue;
+}
+.card-box img {
+  display: block;
+  margin: auto;
+  max-width: 80%;
+}
+.card-box {
+  position: sticky;
+  top: 100px;
+  margin-top: 200px;
+}
+.card-box:nth-of-type(1) {
+  margin-top: 0;
+}
+.last {
+  opacity: 0;
+}
