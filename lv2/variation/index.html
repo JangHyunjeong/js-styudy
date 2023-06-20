@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>변수</title>
+  </head>
+  <body>
+    <div style="display: none">모달창0</div>
+    <div style="display: none">모달창1</div>
+    <div style="display: none">모달창2</div>
+
+    <button>버튼0</button>
+    <button>버튼1</button>
+    <button>버튼2</button>
+
+    <script>
+      // 1.
+      // 함수(); // err
+
+      // function 함수() { // 이건돼 - 호이스팅됨
+      //   console.log(안녕);  // 이건 안돼. 안녕 정의 전에 호출함, 그리고 let은 undefined로 정의 안해줌.
+      //   let 안녕 = "Hello!";
+      // }
+
+      // 2.
+      // 함수(); // err : 함수는 함수가 아닌디?
+      // var 함수 = function () { // 변수의 선업부분만 호이스팅 됨.  // 그니까 var 함수 = undefined 임
+      //   console.log(안녕);
+      //   var 안녕 = "Hello!";
+      // };
+
+      // // 3.
+      // let a = 1;
+      // var 함수 = function () {
+      //   a = 2;
+      // };
+      // console.log(a); // 1  // 함수 실헹도 안했잖아 실행했으면 2가 되었겠지
+
+      // 4.
+      // let a = 1; // !== window.a
+      // var b = 2;
+      // window.a = 3;
+      // window.b = 4;
+
+      // console.log(a, b, a + b); // 5
+
+      // 5.
+      // for (let i = 1; i < 6; i++) {  // var로 쓰면 반복하고 중동간다고.. var아니고 let 쓰셈
+      //   setTimeout(function () {
+      //     console.log(i);
+      //   }, i * 1000);
+      // }
+
+      // 6.
+      var 버튼들 = document.querySelectorAll("button");
+      var 모달창들 = document.querySelectorAll("div");
+
+      for (let i = 0; i < 3; i++) {
+        버튼들[i].addEventListener("click", () => {
+          모달창들[i].style.display = "block";
+        });
+      }
+    </script>
+  </body>
+</html>
