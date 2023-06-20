@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 해체 분석기를 이용해, 양말 100 바지 20
+      var pants = 20;
+      var socks = 100;
+      function 해체분석기(문자들, 바지, 양말) {
+        if (바지 == 0) {
+          console.log(`바지 다팔림`);
+        } else {
+          console.log(문자들[1], 바지, 문자들[0], 양말);
+        }
+      }
+
+      해체분석기`바지 ${pants} 양말 ${socks}`;
+
+      // var 변수 = "손흥민";
+      // var 변수2 = "손예진";
+      // var 문자 = `안녕하세요 ${변수} 입니다.`;
+
+      // function 해체분석기(문자들, 변수들) {
+      //   console.log(문자들);
+      //   console.log(문자들[1] + 변수들 + 문자들[0]);
+      //   console.log(변수들);
+      // }
+
+      // // tagged literal
+      // 해체분석기`안녕하세요 ${변수} 입니다`;
+    </script>
+  </body>
+</html>
