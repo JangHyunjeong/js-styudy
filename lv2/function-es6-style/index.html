@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* ======  3. ...Rest 파라미터.  ==== */
+      function RestParamFunc(...파라미터들) {
+        // ... >> 여기 있는 모든 파라미터를 array로 싸매겠음
+        console.log(파라미터들);
+      }
+      // RestParamFunc(10, 20, 30, 40);
+
+      // 3-1. 특정 순번의 파라미터를 제외하고 array화 할수도 있음.
+      function RestParamFunc2(a, b, ...파라미터들) {
+        // ... >> 여기 있는 모든 파라미터를 array로 싸매겠음
+        console.log(파라미터들);
+      }
+      // RestParamFunc2(10, 20, 30, 40);
+      // * ...rest vs ...spread : 함수 파라미터 자리에 붙으면 rest, 나머지 spread
+
+      // 3-2. 모든 파라미터들을 하나씩 콘솔창에 출력해주는 함수
+      function RestParamFunc3(...파라미터들) {
+        for (var i = 0; i < 파라미터들.length; i++) {
+          console.log(파라미터들[i]);
+        }
+      }
+      RestParamFunc3(10, 20, 30, 40);
+
+      // 주의
+      // 1. 가장 뒤에 써야함 (...파라미터들, a) -> 안돼
+      // 2. 두번 이상 금지 (...파라미터들, ...파라미터들) -> 안돼
+
+      /* ======  2. 함수의 arguments ==== */
+      // 모든 파라미터를 한꺼번에 싸잡아 다루고 싶을때 사용하기
+      function argumentsFunc(a, b, c) {
+        // ㄴ 여깃는 a,b,c : 파라미터
+        //console.log(a, b, c); // 여깃는 a,b,c : arguments
+        console.log(arguments); // arguments는 array모양으로 출력됨 / arguments는 모든 파라미터를 [] 안에 넣은 변수
+      }
+      //argumentsFunc(1, 2, 3);
+
+      // 2-1. 이렇게 반복문으로 활용가능!
+      function argumentsFunc2(a, b, c) {
+        for (var i = 0; i < arguments.length; i++) {
+          console.log(arguments[i]);
+        }
+      }
+      //argumentsFunc2(4, 5, 6);
+
+      /* ====== 1. 함수의 default 파라미터 ===== */
+      function 더하기(a, b = 10) {
+        // b = 10 : b자리에 아무것도 안넣으면 10으로 출력해주셈
+        console.log(a + b);
+      }
+      //더하기(1); // 출력결과 >> 11
+      // a = 1, b = 10 됨.
+
+      // 1-1. 함수의 default 파라미터 :: 연산도 가능
+      function 더하기2(a, b = 2 * a) {
+        console.log(a + b);
+      }
+      //더하기2(1); // 출력결과 >> 3
+      // a = 1, b = 2 * 1 됨.
+
+      // 1-2. 함수의 default 파라미터 :: 함수도 입력가능 가능
+      function 임시함수() {
+        return 8;
+      }
+
+      function 더하기3(a, b = 임시함수()) {
+        console.log(a + b);
+      }
+      //더하기3(1); // 출력결과 >> 9
+      // a = 1, b = 8 (리턴된값)
+    </script>
+  </body>
+</html>
