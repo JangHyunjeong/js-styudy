@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>constructor</title>
+  </head>
+  <body>
+    <script>
+      // 오브젝트를 복사하고싶다??
+      // constructor문법을 이용하면 object 생성이 편리하다.
+      var 사람 = { name: "kim" };
+      var 사람2 = 사람; // 이런식으로 복사하면 안되잖아!!! (이전글 참조)
+
+      // 비슷한 object를 쉽게 찍어낼 수 있는 constructor 문법
+      // ex) 비슷한 학생 object를 여러개 만드려면?  constructor 라는 object 생성기계를 만드세요
+      // var 학생1 = {
+      //   name: "Kim",
+      //   age: 15,
+      //   sayHi: function () {
+      //     console.log(`안녕하세요 ${this.name} 입니다.`);
+      //   },
+      // };
+
+      // 학생1.sayHi();
+
+      // =====  1. var 학생1. 이걸 construct로 만들기 ===== //
+
+      // construct 생성 , 이걸 쓰면 object 마구 뽑기 가능
+      // 보통 첫글자를 대문자로 적음
+      function Student() {
+        this.name = "Kim"; // this는 새로 생성되는 object = instance
+        this.age = 15;
+        this.sayHi = function () {
+          console.log(`안녕하세요 ${this.name} 입니다.`);
+        };
+      }
+
+      // 이러면 object 뽑힘
+      var 학생1 = new Student();
+      var 학생2 = new Student();
+
+      console.log(학생1); // Student {name: 'Kim', age: 15, sayHi: ƒ}
+      console.log(학생2); // Student {name: 'Kim', age: 15, sayHi: ƒ}
+
+      학생1.sayHi();
+      학생2.sayHi();
+
+      // =====  2. var 학생1, 학생2 각각의 데이터 받아오기 ===== //
+      // 보통 첫글자를 대문자로 적음
+      function Student(name, age) {
+        this.name = name;
+        this.age = age;
+        this.sayHi = function () {
+          console.log(`안녕하세요 ${this.name} 입니다.`);
+        };
+      }
+
+      // 이러면 object 뽑힘
+      var 학생1 = new Student("Park", 20);
+      var 학생2 = new Student("Lee", 15);
+
+      console.log(학생1); // Student {name: 'Park', age: 20, sayHi: ƒ}
+      console.log(학생2); // Student {name: 'Lee', age: 15, sayHi: ƒ}
+
+      /* =========== ============== */
+    </script>
+  </body>
+</html>
