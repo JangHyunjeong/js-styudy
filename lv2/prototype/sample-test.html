@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prototype 연습문제</title>
+  </head>
+  <body>
+    <h1>Prototype 연습문제</h1>
+    <script>
+      // Q0. constructor문법을 사용해서 위의 오브젝트와 똑같은 오브젝트 3개를 한번 뽑아보십시오.
+      // + 여기에 학생1.sayHi()라고 사용하면 "안녕 나는 Kim이야" 라는 글자가 콘솔창에 나오도록 sayHi()라는 함수도 constructor 안에 추가해보세요.
+
+      // var 학생1 = { name : 'Kim', age : 20 }
+      // var 학생2 = { name : 'Park', age : 21 }
+      // var 학생3 = { name : 'Lee', age : 22 }
+
+      function Student(name, age) {
+        this.name = name;
+        this.age = age;
+        this.sayHi = function () {
+          console.log(`안녕 나는 ${this.name}이야`);
+        };
+      }
+
+      var 학생1 = new Student("Kim", 20);
+      var 학생2 = new Student("Park", 21);
+      var 학생3 = new Student("Lee", 22);
+
+      //학생1.sayHi();
+
+      // 1. 다음 코드의 출력 결과는 무엇일까요?
+      function Parent() {
+        this.name = "Kim";
+      }
+      var a = new Parent();
+
+      a.__proto__.name = "Park";
+      //console.log(a.__proto__);
+      // console.log(a.name); // Kim , proto만 바뀐거고, a는 안바꼈잖아
+
+      //2. 함수가 안들어가요 엉엉
+      // 하단처럼 만들었는데 의도한 대로 이름이 출력되지 않고 있습니다.
+      // 원인은 무엇일까요?
+
+      function Student(이름, 나이) {
+        this.name = 이름;
+        this.age = 나이;
+      }
+
+      // 변경전
+      // Student.prototype.sayHi = () => {
+      //   console.log(this);
+      //   console.log("안녕 나는 " + this.name + "이야");
+      // };
+
+      // 변경후
+      Student.prototype.sayHi = function () {
+        console.log(this);
+        console.log("안녕 나는 " + this.name + "이야");
+      };
+
+      var 학생1 = new Student("Kim", 20);
+      학생1.sayHi(); // 화살표 함수 사용했자나! 지금 저 상황에서 this는 Student 가 아닌, window가 되어버려서 이름을 영영 찾을수 없어.
+      // 의도한 대로 출력하고싶다면 화살표함수  function 키워드 사용해서 쓰기
+
+      //3. 모든 array에 적용할 수 있는 함수를 직접 새로 만들려면 어떻게 해야할까요?
+      // 모든 array에 붙일 수 있는,
+      // array 내에 있는 3이라는 값을 제거해주는 유용한 함수를 하나 만들고 싶습니다.
+      var arr = [1, 2, 3, 4, 5];
+
+      Array.prototype.remove3 = function () {
+        console.log("before : ", this);
+        this.forEach((item, idx) => {
+          if (item == 3) {
+            this.splice(idx, 1);
+          }
+        });
+      };
+
+      arr.remove3();
+      console.log("after : ", arr); //[1,2]
+    </script>
+  </body>
+</html>

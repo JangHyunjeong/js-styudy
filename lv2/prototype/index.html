@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>prototype</title>
+  </head>
+  <body>
+    <script>
+      // 1. Constructor 생성
+      function Student(name, age) {
+        this.name = name;
+        this.age = age;
+        this.sayHi = function () {
+          console.log(`안녕하세요 ${this.name} 입니다`);
+        };
+      }
+
+      // 2. 나는 따로 prototype이란걸 생성하지 않았는디.. 이렇게 치면 뭐가 나오네..?
+      Student.prototype; // 출력결과 >> {constructor: ƒ}
+
+      // 3. student의 prototype에 값을 줘볼까?
+      Student.prototype.gender = "남";
+
+      // 4. 학생1이라는 인스턴스 생성
+      var 학생1 = new Student("김태희", 15);
+
+      // 5. 학생1.genter를 지정하지 않았어도, prototype에 저장된 값이 노출된다.
+      학생1.gender; // 출력결과 >> '남'
+    </script>
+  </body>
+</html>
