@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Class</title>
+  </head>
+  <body>
+    <h1>es6 상속 Class</h1>
+
+    <script>
+      // constructor를 만드는 신문법
+      class 부모 {
+        constructor() {
+          this.name = "Kim";
+          // 함수 추가1 : 여기에도 쓸수있고.
+          // 여기에 쓰면 자식이 직접 함수를 가짐
+          this.sayHi = function () {
+            console.log("Hi");
+          };
+        }
+        // 함수 추가2 : 여기에도 쓸수있다.
+        // 여기에쓰면 자식 오브젝트에 추가 안됨.
+        // 부모.prototype에 추가됨.
+        sayBye() {
+          console.log("Bye");
+        }
+      }
+
+      var 자식 = new 부모(); // 자식 object 출력
+
+      자식.__proto__; // 내 부모의 prototype 찾기
+      // 출력결과 >> {constructor: ƒ, sayBye: ƒ}
+
+      Object.getPrototypeOf(자식); // 부모의 prototype을 출력해주세요
+      // 출력결과 >> {constructor: ƒ, sayBye: ƒ}
+
+      // prototype에 함수 추가하고싶으면?
+      부모.prototype.sayHello = function () {
+        console.log("Hello");
+      };
+
+      // 객체지향문법은 왜 쓰냐면
+      // object 여러개를 만들어 쓰려고 하는것
+    </script>
+  </body>
+</html>
