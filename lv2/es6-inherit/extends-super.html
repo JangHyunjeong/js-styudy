@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>extends / super</title>
+  </head>
+  <body>
+    <h1>extends : class 복사하는 문법 <br /></h1>
+
+    <script>
+      // 복사, 상속할 값이 많으면 하드코딩하기 힘들쟈냐
+      // 그래서 extends로 class 를 복사한다
+
+      // class, prototype, constructor를 이해하고 설명가능하면 들으셈
+
+      // class grandPapa {
+      //   constructor(name) {
+      //    this.firstName = "Kim";
+      //      this.name = name;
+      //   }
+      // }
+
+      // var grandPapa1 = new grandPapa("동식"); // >> {firstName: 'Kim', name: '동식'}
+
+      // grandPapa와 유사한 class를 만들고 싶다면
+      // grandPapa의 속성을 그대로 물려받아서 만들어보자
+      // class 생설될클래스명 extends 물려받고싶은클래스명 {
+      // }
+
+      // 1. 틀린예
+      // class papa extends grandPapa {
+      //   constructor() {
+      //     this.age = 50;
+      //   }
+      // }
+
+      // var papa1 = new papa();
+      // >> Uncaught ReferenceError: Must call super constructor in derived class before accessing 'this' or returning from derived constructor
+      // extends를 쓴 클래스는 this를 함부러 쓸 수 없음.
+      // super(); 를 먼저 쓴 후 써야한다.
+
+      // 2. 맞는예
+      // class papa extends grandPapa {
+      //   constructor(name) {
+      //     // grandPapa와 같이 name 파라미터 넣기
+      //     super(name); // grandPapa 돌고 오시오. // 여기도 name 파라미터 넣어주기
+      //     this.age = 50;
+      //   }
+      // }
+
+      // var papa1 = new papa("광렬"); // >> papa {firstName: 'Kim', name: '광렬', age: 50}
+
+      // 파라미터가 2개 이상이면? >> 2개 잘 넣어주면 됨
+
+      // super 는 용도가 2가지
+      class grandPapa {
+        constructor(name) {
+          this.firstName = "Kim";
+          this.name = name;
+        }
+        sayHi() {
+          // 할아버지 prototype에 추가되는 함수
+          console.log("안녕 난 할아버지");
+        }
+      }
+
+      class papa extends grandPapa {
+        constructor(name) {
+          super(name); // costrucor안의 super : 부모 class의 constructor의미
+          this.age = 50;
+        }
+        sayHi() {
+          console.log("안녕 난 아버지");
+          super.sayHi(); // 부모 class 의 prototype을 의미
+          // 부모.prtotype에 저장된 sayHi()를 실행해주셈
+        }
+      }
+
+      var papa1 = new papa("광렬");
+      papa1.sayHi();
+      // 출력결과 >>
+      // 안녕 난 아버지
+      // 안녕 난 할아버지
+
+      // >> super 쓰면 부모의 prototype을 잘 가져올수 있다
+    </script>
+  </body>
+</html>
