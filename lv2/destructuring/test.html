@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Destructuring 연습문제</title>
+  </head>
+  <body>
+    <h1>Destructuring 연습문제</h1>
+    <script>
+      // ==== Q1. a와 address와 number라는 변수는 각각 무슨 값을 가지고 있을까요?
+      var [number, address] = [30, "seoul"]; // >> number = 30, address = "seoul"
+      console.log(number, address); // 출력결과 >> 30, 'seoul'
+      var { address: a, number = 20 } = { address, number }; // >> seoul, 30
+      console.log(address, a, number); // 출력결과 >> seoul seoul 30
+
+      // ==== Q2. 다음과 같은 Object에서 데이터를 뽑아서 변수를 만들고 싶습니다.
+      // 여러분의 뛰어난 신체 정보를 담은 Object입니다.
+      // 여기서 키, 몸무게, 상의사이즈, 하의사이즈 정보를 각각 뽑아서 4개의 변수를 만들고 싶습니다.
+      // 어떻게 만들면 될까요?
+      let 신체정보 = {
+        body: {
+          height: 190,
+          weight: 70,
+        },
+        size: ["상의 Large", "바지 30인치"],
+      };
+      // 틀렸었음
+      let {
+        body: { height, weight },
+        size: [상의, 하의],
+      } = 신체정보;
+
+      console.log(신체정보);
+    </script>
+  </body>
+</html>
