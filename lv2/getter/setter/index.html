@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>getter/setter</title>
+  </head>
+  <body>
+    <h1>getter/setter</h1>
+
+    <script>
+      // Part1. getter/setter사용하는 이유
+      // // 원래 object 안에 값을 꺼내고 싶으면.. 이런식으로 했었지..
+      // var 사람 = {
+      //   name: "Park",
+      //   age: 30,
+      //   nextAge() {
+      //     return this.age + 1;
+      //   },
+      //   setAge(age) {
+      //     this.age = parseInt(age);
+      //   },
+      // };
+
+      // 사람.nextAge();
+
+      // // 근데 요즘은 자료 꺼내는 법을 만들어서 꺼냄
+      // // 왜? ..
+
+      // // 함수를 만들어 object 데이터를 다루는 이유
+      // // 1. object자료가 복잡할때 손쉽게 사용할수 잇다.
+      // // 2. object 자료 수정시 편리
+      // 사람.age = "20"; // 자료 직접 변경시, 에러 발생 확률이 높다.
+      // 사람.setAge("20"); // setAge에서 실수 방지 안전장치 추가 가능.
+
+      // // Part2. object에서 set/get 사용하기
+      // // es5 : 함수 앞에 set/ get 넣으면 직관적으로 추가 가능
+      // // 원래 object 안에 값을 꺼내고 싶으면.. 이런식으로 했었지..
+      // var 사람 = {
+      //   name: "Park",
+      //   age: 30,
+
+      //   // get 함수 (getter) 특징
+      //   // return 이 있어야함 .. getter함수들은 데이터를 꺼내는 함수. 그래서 return 강제
+      //   // 파라미터 없어야함
+      //   get nextAge() {
+      //     return this.age + 1;
+      //   },
+
+      //   // set 함수 (setter)
+      //   // 파라미터 1개만 있어야함
+      //   set setAge(age) {
+      //     this.age = parseInt(age);
+      //   },
+      // };
+
+      // 사람.setAge = 20;
+      // 사람.nextAge; // 소괄호 생략가능
+      // //사람.nextAge(); //사람.nextAge is not a function
+
+      // // get 함수 (getter) 특징
+      // // return 이 있어야함 .. getter함수들은 데이터를 꺼내는 함수. 그래서 return 강제
+
+      // // set 함수 (setter)
+      // // 파라미터 1개만 있어야함
+
+      // Part3. class에서 set/get 사용하기
+      class 사람 {
+        constructor() {
+          this.name = "줄리";
+          this.age = 20;
+        }
+        get nextAge() {
+          return this.age;
+        }
+        set setAge(age) {
+          this.age = age;
+        }
+      }
+
+      var 사람1 = new 사람();
+      //사람1.nextAge();
+      사람1.nextAge;
+      // 사람1.setAge(50);
+      사람1.setAge = 50;
+
+      console.log(사람1); // >> 사람 {name: '줄리', age: 50}
+
+      // 데이터 출력/수정 함수를 만들어 쓰는 이유?
+      // 데이터를 꺼내거나 수정할때 데이터 잘못된 데이터가 안들어가도록. 방지하려고
+    </script>
+  </body>
+</html>
